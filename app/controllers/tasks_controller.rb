@@ -25,7 +25,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to task_url(@task), success: "Task が正常に投稿されました" }
+        format.html { redirect_to task_url(@task), notice: "Task が正常に投稿されました" }
       else
         flash.now[:danger] = 'Task が投稿されませんでした'
         format.html { render :new }
@@ -37,7 +37,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to task_url(@task), success: "Task が正常に更新されました." }
+        format.html { redirect_to task_url(@task), notice: "Task が正常に更新されました." }
       else
         flash.now[:danger] = 'Task が更新されませんでした'
         format.html { render :edit }
@@ -50,7 +50,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url, success: "Task は正常に削除されました" }
+      format.html { redirect_to tasks_url, notice: "Task は正常に削除されました" }
     end
   end
 
