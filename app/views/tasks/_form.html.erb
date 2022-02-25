@@ -1,0 +1,23 @@
+<%= form_with(model: task) do |form| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% task.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+    
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit '投稿' %>
+  </div>
+<% end %>

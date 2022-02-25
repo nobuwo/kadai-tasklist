@@ -1,6 +1,6 @@
 <p>
   <strong>id(<%= @task.id %>) のタスク詳細：</strong>
-  <%= @task.content %>
+  <%= @task.content %> &gt; <%= @task.status %>
 </p>
 
 <%= link_to '一覧に戻る', tasks_path %> |
