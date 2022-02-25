@@ -1,0 +1,14 @@
+<h1>タスク新規作成ページ</h1>
+
+<%= form_with(model: @task) do |form| %>
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit '投稿' %>
+  </div>
+<% end %>
+
+<%= link_to '一覧に戻る', tasks_path %>
