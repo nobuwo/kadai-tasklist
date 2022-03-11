@@ -1,9 +1,12 @@
 class TasksController < ApplicationController
+  before_action :require_logged_in
   before_action :set_task, only: %i[ show edit update destroy ]
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all
+    #if logged_in?
+      @pagy, @tasks = pagy(current_user.tasks.order(id: :desc))
+    #end
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -21,14 +24,14 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to task_url(@task), notice: "Task が正常に投稿されました" }
+        format.html {redirect_to task_url(@task), notice: "Task が正常に投稿されました"}
       else
         flash.now[:danger] = 'Task が投稿されませんでした'
-        format.html { render :new }
+        format.html {render :new}
       end
     end
   end
@@ -37,10 +40,10 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to task_url(@task), notice: "Task が正常に更新されました." }
+        format.html {redirect_to task_url(@task), notice: "Task が正常に更新されました."}
       else
         flash.now[:danger] = 'Task が更新されませんでした'
-        format.html { render :edit }
+        format.html {render :edit}
       end
     end
   end
@@ -50,7 +53,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: "Task は正常に削除されました" }
+      format.html {redirect_to tasks_url, notice: "Task は正常に削除されました"}
     end
   end
 

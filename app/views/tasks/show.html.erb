@@ -1,7 +1,21 @@
-<p>
-  <strong>id(<%= @task.id %>) のタスク詳細：</strong>
-  <%= @task.content %> &gt; <%= @task.status %>
-</p>
+<div class="row">
+  <div class="col-md-4">
+    <table class="table table-bordered">
+      <tr>
+        <th class="table-light">ID</th>
+        <td><%= @task.id %></td>
+      </tr>
+      <tr>
+        <th class="table-light">タスク内容</th>
+        <td><%= @task.content %></td>
+      </tr>
+      <tr>
+        <th class="table-light">ステータス</th>
+        <td><%= @task.status %></td>
+      </tr>
+    </table>
+  </div>
+</div>
 
 <%= link_to '一覧に戻る', tasks_path %> |
 <%= link_to '編集する', edit_task_path(@task) %> |
